@@ -11,5 +11,5 @@ console.log (q);
 console.log (b);*/
 
 function isIven (value) {
-
+ddd
 }
