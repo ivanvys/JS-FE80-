@@ -1,22 +1,17 @@
 
-/*function x (a,b) {
-a+b;
-return a+b;
+/* Первое задание*/
+
+function sayHello (name) {
+if (name.toLowerCase()==="mark") {
+return 'Hi, '+name.charAt(0).toUpperCase()+name.slice(1)}+"!";
+return 'Hello, '+name.charAt(0).toUpperCase()+name.slice(1)+"!"
 };
 
-let q=x(5,2);
-let b=x(3,10);
+const sayHello=(name2)=> {
+if (name2.toLowerCase()==="mark") {
+return 'Hi, '+name2.charAt(0).toUpperCase()+name2.slice(1)+"!"};
+return 'Hello, '+name2.charAt(0).toUpperCase()+name2.slice(1)+"!"
+};
 
-console.log (q);
-console.log (b);*/
+/*Второе задание*/
 
-const x = function (value) {
-if (value>10) {
-return 'error, number can not be grater than 11'
-} if (value>5) {
-return'it is middle'
-} if (value>1) {
-return'OK'
-} return 'лох'};
-
-console.log(x(5));
