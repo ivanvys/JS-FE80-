@@ -1,9 +1,11 @@
 
 /* Первое задание*/
 const sayHello=(name)=> {
+const name2=name.charAt(0).toUpperCase();
+const name3=name.slice(1).toLowerCase()+"!";
 if (name.toLowerCase()==="mark") {
-return 'Hi, '+name.charAt(0).toUpperCase()+name.slice(1).toLowerCase()+"!"};
-return 'Hello, '+name.charAt(0).toUpperCase()+name.slice(1).toLowerCase()+"!";
+return 'Hi, '+name2+name3};
+return 'Hello, '+name2+name3;
 };
 
 /*Второе задание*/
@@ -13,16 +15,12 @@ return Math.sqrt((m*m)+(n*n));
 
 /*Третье задание*/
 const lowerNumber = (a,b)=> {
-if (a>b) {
-return b};
-return a;
+return Math.min (a,b)
 };
 
 /*Четвертое задание*/
 const isEven =(n)=> {
-if (n%2===0) {
-return true};
-return false
+return n%2===0
 };
 
 /*Пятое задание*/
