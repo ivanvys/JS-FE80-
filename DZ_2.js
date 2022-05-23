@@ -93,6 +93,7 @@ const newObjects = (value) => {
         };
   });
 };
+
 //sixth exercise
 
 const newReleases = [
@@ -139,10 +140,13 @@ const fnForNewReleases = (value) => {
 ///seventh exercise
 
 const fnRating = (value) => {
-  return value.map((element) => {
-    return JSON.stringify(element.rating) === JSON.stringify([5])
-      ? element.id
-      : "nothing";
-  });
+  return value
+    .map((element) => {
+      return JSON.stringify(element.rating) === JSON.stringify([5])
+        ? element.id
+        : "nothing";
+    })
+    .filter((element) => {
+      return element !== "nothing";
+    });
 };
-//console.log(fnRating(newReleases));
