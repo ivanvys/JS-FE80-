@@ -72,18 +72,27 @@ const users2 = [
 
 const newObjects = (value) => {
   return value.map((element) => {
-    return {
-      woman: {
-        id: element.id,
-        full_name: `${element.first_name} ${element.last_name}`,
-        email: element.email,
-        gender: element.gender,
-        ip_address: element.ip_address,
-      },
-    };
+    return element.id === 1
+      ? {
+          woman: {
+            id: element.id,
+            full_name: `${element.first_name} ${element.last_name}`,
+            email: element.email,
+            gender: element.gender,
+            ip_address: element.ip_address,
+          },
+        }
+      : {
+          man: {
+            id: element.id,
+            full_name: `${element.first_name} ${element.last_name}`,
+            email: element.email,
+            gender: element.gender,
+            ip_address: element.ip_address,
+          },
+        };
   });
 };
-
 //sixth exercise
 
 const newReleases = [
@@ -136,4 +145,4 @@ const fnRating = (value) => {
       : "nothing";
   });
 };
-console.log(fnRating(newReleases));
+//console.log(fnRating(newReleases));
