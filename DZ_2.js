@@ -1,9 +1,10 @@
 //first exercise
 
 const arrayNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const array2 = (value) => {
-  return value.map((numbers) => {
-    return numbers % 2 === 0 ? (numbers += 1) : (numbers -= 1);
+const arrayNumbers2 = (value) => {
+  return value.map((element) => {
+    const isEven = element % 2 === 0;
+    return isEven ? element + 1 : element - 1;
   });
 };
 
@@ -11,9 +12,9 @@ const array2 = (value) => {
 
 const arrayLetters = ["HELLO", "WoRld", "LolKek"];
 const arrayLetters2 = (value) => {
-  return value.map((letters) => {
-    return letters.charAt(0).toUpperCase() + letters.slice(1).toLowerCase();
-  });
+  return value.map(
+    (letters) => letters[0].toUpperCase() + letters.slice(1).toLowerCase()
+  );
 };
 
 //third exercise
@@ -34,15 +35,13 @@ const users = [
 ];
 
 const removeUsers = (value, id) => {
-  return value.filter((element) => {
-    return element.id !== id;
-  });
+  return value.filter((element) => !id.includes(element.id));
 };
 
 //fourth exercise
 
 const palindrome = "шалаш";
-const isPal = (someString) => {
+const isPalindrome = (someString) => {
   return (
     someString.toLowerCase() ===
     someString.split("").reverse().join("").toLowerCase()
@@ -70,28 +69,21 @@ const users2 = [
   },
 ];
 
-const newObjects = (value) => {
-  return value.map((element) => {
-    return element.id === 1
-      ? {
-          woman: {
-            id: element.id,
-            full_name: `${element.first_name} ${element.last_name}`,
-            email: element.email,
-            gender: element.gender,
-            ip_address: element.ip_address,
-          },
-        }
-      : {
-          man: {
-            id: element.id,
-            full_name: `${element.first_name} ${element.last_name}`,
-            email: element.email,
-            gender: element.gender,
-            ip_address: element.ip_address,
-          },
-        };
+const filterUsersByGender = (users) => {
+  const men = [];
+  const women = [];
+
+  users.forEach(({ first_name, last_name, ...othersFields }) => {
+    const userToPush = {
+      full_name: `${first_name} ${last_name}`,
+      ...othersFields,
+    };
+    const placeToPush =
+      userToPush.gender === "Male"
+        ? men.push(userToPush)
+        : women.push(userToPush);
   });
+  return { men, women };
 };
 
 //sixth exercise
@@ -118,7 +110,7 @@ const newReleases = [
     title: "The Chamber",
     boxart: "https...",
     url: "https...",
-    rating: [4.0],
+    rating: [5.0],
     bookmark: [],
   },
   {
@@ -126,27 +118,23 @@ const newReleases = [
     title: "Fracture",
     boxart: "https...",
     url: "https...",
-    rating: [5.0],
+    rating: [4.0],
     bookmark: [{ id: 432534, time: 65876586 }],
   },
 ];
 
 const fnForNewReleases = (value) => {
-  return value.map((element) => {
-    return JSON.stringify(element);
-  });
+  return value.map(({ id, title }) => ({ id, title }));
 };
 
 ///seventh exercise
 
 const fnRating = (value) => {
-  return value
-    .map((element) => {
-      return JSON.stringify(element.rating) === JSON.stringify([5])
-        ? element.id
-        : "nothing";
-    })
-    .filter((element) => {
-      return element !== "nothing";
-    });
+  const result = [];
+  value.forEach(({ id, rating }) => {
+    if (rating[0] === 5) {
+      result.push(id);
+    }
+  });
+  return result;
 };
