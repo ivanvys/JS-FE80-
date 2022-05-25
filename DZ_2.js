@@ -86,7 +86,6 @@ const filterUsersByGender = (users) => {
     { men: [], women: [] }
   );
 };
-console.log(filterUsersByGender(users2));
 //sixth exercise
 
 const newReleases = [
@@ -131,11 +130,11 @@ const fnForNewReleases = (value) => {
 ///seventh exercise
 
 const fnRating = (value) => {
-  const result = [];
-  value.forEach(({ id, rating }) => {
+  return value.reduce((acc, { id, rating }) => {
     if (rating[0] === 5) {
-      result.push(id);
+      acc.push(id);
     }
-  });
-  return result;
+    return acc;
+  }, []);
 };
+console.log(fnRating(newReleases));
