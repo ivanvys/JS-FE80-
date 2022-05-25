@@ -86,6 +86,7 @@ const filterUsersByGender = (users) => {
     { men: [], women: [] }
   );
 };
+
 //sixth exercise
 
 const newReleases = [
@@ -137,4 +138,3 @@ const fnRating = (value) => {
     return acc;
   }, []);
 };
-console.log(fnRating(newReleases));
