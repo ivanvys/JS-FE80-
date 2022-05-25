@@ -70,22 +70,23 @@ const users2 = [
 ];
 
 const filterUsersByGender = (users) => {
-  const men = [];
-  const women = [];
-
-  users.forEach(({ first_name, last_name, ...othersFields }) => {
-    const userToPush = {
-      full_name: `${first_name} ${last_name}`,
-      ...othersFields,
-    };
-    const placeToPush =
-      userToPush.gender === "Male"
-        ? men.push(userToPush)
-        : women.push(userToPush);
-  });
-  return { men, women };
+  return users.reduce(
+    (accumulator, { first_name, last_name, ...othersFields }) => {
+      const userToPush = {
+        full_name: `${first_name} ${last_name}`,
+        ...othersFields,
+      };
+      if (userToPush.gender === "Male") {
+        accumulator.men.push(userToPush);
+      } else {
+        accumulator.women.push(userToPush);
+      }
+      return accumulator;
+    },
+    { men: [], women: [] }
+  );
 };
-
+console.log(filterUsersByGender(users2));
 //sixth exercise
 
 const newReleases = [
