@@ -12,11 +12,7 @@ const theBiggestSquare = (value) => {
       return { square: width * height, url };
     })
     .reduce((acc, element) => {
-      if (acc.square > element.square) {
-        return acc;
-      } else {
-        return element;
-      }
+      return element.square > acc.square ? element : acc;
     });
 };
 console.log(theBiggestSquare(boxArts));
