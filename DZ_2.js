@@ -131,9 +131,9 @@ const fnForNewReleases = (value) => {
 ///seventh exercise
 
 const fnRating = (value) => {
-  return value.reduce((acc, { id, rating }) => {
-    if (rating[0] === 5) {
-      acc.push(id);
+  return value.reduce((acc, element) => {
+    if (element.rating[0] === 5) {
+      acc.push(element.id);
     }
     return acc;
   }, []);
