@@ -72,6 +72,7 @@ const notUndefinedAndNull = {
   b: null,
   c: "Привет",
   d: 1,
+  e: null,
 };
 
 const withoutUndefinedAndNull = (value) => {
