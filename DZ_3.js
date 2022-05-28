@@ -41,11 +41,7 @@ const theBiggestSquare = (value) => {
       return { square: width * height, url };
     })
     .reduce((acc, element) => {
-      if (acc.square > element.square) {
-        return acc;
-      } else {
-        return element;
-      }
+      return element.square > acc.square ? element : acc;
     });
 };
 
@@ -63,7 +59,6 @@ const mostFrequentItemCount = (value) => {
     .filter((element) => obj[element] === maxValue)
     .join("");
 };
-console.log(mostFrequentItemCount(arrayNumbers));
 
 //fourth exercise
 
