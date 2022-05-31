@@ -18,7 +18,7 @@ const array2 = (value) => {
   });
   return result;
 };
-console.log(array2(array));
+
 const stats = [
   { title: "attack", value: 25 },
   { title: "defence", value: 30 },
@@ -32,12 +32,23 @@ const statsItem = {
 const result = stats.map((element) => {
   return { ...element, icon: statsItem[element.title] };
 });
-console.log(result);
+
 const user = { call: "Oleg" };
 
 const logCity = (value) => {
   return value.address?.city;
 };
 
-const entries = Object.entries(user);
-console.log(entries);
+//promises
+
+const fnDelay = async () => {
+  setTimeout(() => {
+    resolve("Hello");
+  }, 1000);
+  setTimeout(() => {
+    reject("Упс");
+  }, 1000);
+};
+
+const { url } = { width: 200, height: 200, url: 1 }; //деструктура объекта
+console.log(url);
