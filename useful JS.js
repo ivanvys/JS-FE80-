@@ -50,7 +50,5 @@ const fnDelay = async () => {
   }, 1000);
 };
 
-fnDelay.then(
-  (result) => console.log(result), //если resolve
-  (error) => console.log(error) //если reject
-);
+const { url } = { width: 200, height: 200, url: 1 }; //деструктура объекта
+console.log(url);
