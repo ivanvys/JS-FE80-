@@ -20,12 +20,11 @@ const newReleases = [
 ];
 
 const getIdAndTitle = (value) => {
-  return value.reduce((acc, { id, title }) => {
-    acc[id] = title;
+  return value.reduce((acc, element) => {
+    acc[element.id] = element.id;
     return acc;
   }, {});
 };
-
 //second exercise
 
 const boxArts = [
@@ -47,7 +46,7 @@ const theBiggestSquare = (value) => {
 //////OR
 
 const boxArts2 = [
-  { width: 20000, height: 200, url: 1 },
+  { width: 200, height: 200, url: 1 },
   { width: 150, height: 200, url: 2 },
   { width: 300, height: 200, url: 3 },
   { width: 425, height: 150, url: 4 },
