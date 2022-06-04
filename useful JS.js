@@ -8,15 +8,14 @@ const array = [
 ];
 
 const array2 = (value) => {
-  const result = {};
-  value.forEach((element) => {
-    if (!result[element.brand]) {
-      result[element.brand] = [element];
+  return value.reduce((acc, element) => {
+    if (!acc[element.brand]) {
+      acc[element.brand] = [element];
     } else {
-      result[element.brand].push(element);
+      acc[element.brand].push(element);
     }
-  });
-  return result;
+    return acc;
+  }, {});
 };
 
 const stats = [
@@ -50,5 +49,30 @@ const fnDelay = async () => {
   }, 1000);
 };
 
-const { url } = { width: 200, height: 200, url: 1 }; //деструктура объекта
-console.log(url);
+const data = [
+  {
+    id: 1,
+    value: 2,
+  },
+  {
+    id: 1,
+    value: 42,
+  },
+  {
+    id: 1,
+    value: 32,
+  },
+  {
+    id: 1,
+    value: 222,
+  },
+  {
+    id: 1,
+    value: 12,
+  },
+];
+const q = (value) => {
+  return value.reduce((acc, element) => {
+    return acc + element.value;
+  }, 0);
+};
