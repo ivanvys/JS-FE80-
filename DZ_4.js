@@ -25,4 +25,3 @@ const fnForExercise = async () => {
     console.log(changePokeStats);
   } catch (error) {}
 };
-fnForExercise();
