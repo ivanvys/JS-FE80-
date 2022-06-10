@@ -49,30 +49,58 @@ const fnDelay = async () => {
   }, 1000);
 };
 
-const data = [
+const z = "Vanya";
+const x = [...z];
+
+const arr1 = [
+  { id: 1, name: "Alex", age: 10 },
+  { id: 2, name: "Petr", age: 25 },
+  { id: 3, name: "Alexandra", age: 29 },
+  { id: 4, name: "Vahtang", age: 22 },
+];
+
+const arr2 = [
   {
     id: 1,
-    value: 2,
+    pocket: 200,
   },
   {
-    id: 1,
-    value: 42,
+    id: 2,
+    pocket: 100,
   },
   {
-    id: 1,
-    value: 32,
+    id: 3,
+    pocket: 500,
   },
   {
-    id: 1,
-    value: 222,
-  },
-  {
-    id: 1,
-    value: 12,
+    id: 4,
+    pocket: 1000,
   },
 ];
-const q = (value) => {
-  return value.reduce((acc, element) => {
-    return acc + element.value;
-  }, 0);
+
+const res = arr1.map((item) => {
+  return {
+    ...item,
+    pocket: arr2.find((element) => element.id === item.id).pocket,
+  };
+});
+
+const e = async () => {
+  const BASE_URL_USERS = "https://jsonplaceholder.typicode.com/users";
+  const BASE_URL_TODOS = "https://jsonplaceholder.typicode.com/todos";
+  const dataUsers = await fetch(BASE_URL_USERS).then((result) => result.json());
+  const dataToDoes = await fetch(BASE_URL_TODOS).then((result) =>
+    result.json()
+  );
+  console.log(dataUsers);
+  console.log(dataToDoes);
+  const g = dataUsers.map((element) => {
+    return {
+      ...element,
+      todoes: dataToDoes.filter((item) => {
+        return item.userId === element.id;
+      }),
+    };
+  });
+  console.log(g);
 };
