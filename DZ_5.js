@@ -1,3 +1,4 @@
+//common parameteres
 const BASE_URL_USERS = "https://jsonplaceholder.typicode.com/users";
 const BASE_URL_TODOS = "https://jsonplaceholder.typicode.com/todos";
 const call_BASE_URL_USERS = fetch(BASE_URL_USERS).then((result) =>
@@ -9,28 +10,28 @@ const call_BASE_URL_TODOS = fetch(BASE_URL_TODOS).then((result) =>
 
 //with cycle
 const aggregateUsersToDos = async () => {
-  const dataUsers = await call_BASE_URL_USERS;
-  const dataToDoes = await call_BASE_URL_TODOS;
+  const [dataUsers, dataToDoes] = await Promise.all([
+    call_BASE_URL_USERS,
+    call_BASE_URL_TODOS,
+  ]);
   console.log(dataUsers);
   console.log(dataToDoes);
-  const newArrayOfDataUsers = dataUsers.map((element) => {
-    return {
-      ...element,
-      todoes: dataToDoes.filter((item) => {
-        return item.userId === element.id;
-      }),
-    };
-  });
+  const newArrayOfDataUsers = dataUsers.map((element) => ({
+    ...element,
+    todoes: dataToDoes.filter((item) => item.userId === element.id),
+  }));
   console.log(newArrayOfDataUsers);
 };
 
 //without cycle
 const aggregateUsersToDosWithoutCycle = async () => {
-  const dataUsers = await call_BASE_URL_USERS;
-  const dataToDoes = await call_BASE_URL_TODOS;
+  const [dataUsers, dataToDoes] = await Promise.all([
+    call_BASE_URL_USERS,
+    call_BASE_URL_TODOS,
+  ]);
   console.log(dataUsers);
   console.log(dataToDoes);
-  const newArrayOfDataToDoes = dataToDoes.reduce((acc, element) => {
+  const userIdTodosMap = dataToDoes.reduce((acc, element) => {
     if (!acc[element.userId]) {
       acc[element.userId] = [element];
     } else {
@@ -38,13 +39,31 @@ const aggregateUsersToDosWithoutCycle = async () => {
     }
     return acc;
   }, {});
-  const newArrayOfDataUsers = dataUsers.map((element) => {
-    const obj = {
-      ...element,
-      toDos: newArrayOfDataToDoes[element.id],
-    };
-    return obj;
-  });
+  const newArrayOfDataUsers = dataUsers.map((user) => ({
+    ...user,
+    todos: userIdTodosMap[user.id],
+  }));
   console.log(newArrayOfDataUsers);
 };
-aggregateUsersToDosWithoutCycle();
+
+// customMap
+Array.prototype.customMap = function (callback) {
+  const arrayToReturn = [];
+
+  for (let i = 0; i < this.length; i++) {
+    arrayToReturn.push(callback(this[i], i, this));
+  }
+  return arrayToReturn;
+};
+
+//customFilter
+Array.prototype.customFilter = function (callback) {
+  const arrayToReturn = [];
+
+  for (let i = 0; i < this.length; i++) {
+    if (callback(this[i], i, this)) {
+      arrayToReturn.push(this[i]);
+    }
+  }
+  return arrayToReturn;
+};

@@ -1,17 +1,17 @@
-const y = undefined;
-const g = (value) => {
-  const e = [...value];
-  const q = e
-    .reduce((acc, element) => {
-      if (!acc.includes(element)) {
-        acc.push(element);
-      }
-      return acc;
-    }, [])
-    .join("");
-  return value.toLowerCase() === q.toLowerCase() ||
-    value.toLowerCase() === undefined
-    ? "true"
-    : "false";
+const r = [1, 2, 3, 4, 5, 6];
+const y = (value) => {
+  const p = [];
+  const e = value.reduce((acc, element) => {
+    acc += element;
+    return acc;
+  }, 0);
+  p.push(e);
+  value.reduce((acc, element) => {
+    acc = acc - element;
+    p.push(acc);
+    return acc;
+  }, e);
+  return p;
 };
-console.log(g(y));
+
+console.log(y(r));
