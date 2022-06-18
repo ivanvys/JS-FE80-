@@ -73,16 +73,14 @@ const translationFromRomanToArabicNumbers = (value) => {
     M: 1000,
   };
   const romanAndArabicNumbersKeys = ["I", "V", "X", "L", "C", "D", "M"];
-  let result = 0;
-  for (let i = 0; i < value.length; i++) {
+  return [...value].reduce((acc, element, index) => {
     if (
-      romanAndArabicNumbersKeys.indexOf(value[i]) <
-      romanAndArabicNumbersKeys.indexOf(value[i + 1])
+      romanAndArabicNumbersKeys.indexOf(element) >
+      romanAndArabicNumbersKeys.indexOf(value[index + 1])
     ) {
-      result -= romanAndArabicNumbers[value[i]];
+      return (acc += romanAndArabicNumbers[element]);
     } else {
-      result += romanAndArabicNumbers[value[i]];
+      return (acc -= romanAndArabicNumbers[element]);
     }
-  }
-  return result;
+  }, 0);
 };
