@@ -1,3 +1,5 @@
+// first exercise
+
 const pairs = [
   "red",
   "red",
@@ -5,15 +7,11 @@ const pairs = [
   "white",
   "white",
   "white",
-  "red",
-  "red",
   "white",
   "white",
   "white",
   "white",
   "white",
-  "black",
-  "black",
 ];
 
 const howManyPairs = (value) => {
@@ -61,4 +59,30 @@ const howManyPairs = (value) => {
   } else {
     return `${resultPairAndColor[0]} (${resultPairAndColor[0]} ${resultPairAndColor[1][0][0]} pairs)`;
   }
+};
+
+//second exercise
+const translationFromRomanToArabicNumbers = (value) => {
+  const romanAndArabicNumbers = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  };
+  const romanAndArabicNumbersKeys = ["I", "V", "X", "L", "C", "D", "M"];
+  let result = 0;
+  for (let i = 0; i < value.length; i++) {
+    if (
+      romanAndArabicNumbersKeys.indexOf(value[i]) <
+      romanAndArabicNumbersKeys.indexOf(value[i + 1])
+    ) {
+      result -= romanAndArabicNumbers[value[i]];
+    } else {
+      result += romanAndArabicNumbers[value[i]];
+    }
+  }
+  return result;
 };
