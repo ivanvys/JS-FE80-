@@ -84,7 +84,6 @@ const res = arr1.map((item) => {
     pocket: arr2.find((element) => element.id === item.id).pocket,
   };
 });
-
 const e = async () => {
   const BASE_URL_USERS = "https://jsonplaceholder.typicode.com/users";
   const BASE_URL_TODOS = "https://jsonplaceholder.typicode.com/todos";
@@ -149,3 +148,95 @@ class PokeApi {
 }
 
 const api = new PokeApi();
+
+((a, b) => {
+  // console.log(a + b);
+})(5, 5); // самовызывающаяся функция
+
+const dummyData = [
+  [
+    {
+      ip: "139.12.13",
+      value: 25,
+    },
+    {
+      ip: "139.12.134",
+      value: 12,
+    },
+    {
+      ip: "139.12.22",
+      value: 10,
+    },
+  ],
+  [
+    {
+      ip: "144.12.13",
+      value: 3,
+    },
+    {
+      ip: "1467.12.22",
+      value: 11,
+    },
+  ],
+];
+
+// [{ip: 139.12.22', total: 47 }, {ip: '1467.12.22', total: 14}]
+
+const ipFn = (value) => {
+  return value.reduce((acc, element) => {
+    let counter = 0;
+    const obj = element.reduce((acc, item) => {
+      const lastIndex = element[element.length - 1];
+      acc.ip = lastIndex.ip;
+      acc.total = counter += item.value;
+      return acc;
+    }, {});
+    acc.push(obj);
+    return acc;
+  }, []);
+};
+
+//OR
+const someFn = (value) => {
+  return value.map((element) => {
+    const theLastIndex = element.length - 1;
+    const summ = element.reduce((acc, item) => {
+      acc += item.value;
+      return acc;
+    }, 0);
+    return { ip: element[theLastIndex].ip, total: summ };
+  });
+};
+
+const arrayOfArrays = [[1, 2, 3, 4], [2, 2, 2, 5, 6, 10], [1]];
+
+const theHiestArray = (value) => {
+  return value.reduce((acc, element) => {
+    const summElement = element.reduce((result, item) => result + item);
+    return acc > summElement ? acc : summElement; //найти самое большое/маленькое число
+  });
+};
+
+const summ = (a) => (b) => console.log(a + b); //рекурсия
+
+const numbers = [2, 3, 5, 3, 7, 9, 5, 3, 7];
+const Fn = (value) => {
+  const objNumbers = value.reduce((acc, element) => {
+    if (acc[element]) {
+      acc[element] += 1;
+    } else {
+      acc[element] = 1;
+    }
+    return acc;
+  }, {});
+  const arrayOfNumbers = Object.entries(objNumbers).sort(
+    (firstElement, secondElement) => {
+      return secondElement[1] - firstElement[1];
+    }
+  );
+  const toFillArray = arrayOfNumbers.map((item) => {
+    const number = Number(item[0]);
+    return Array(item[1]).fill(number); //вывести число указанное число раз (как делал задачу на кодварсе)
+  });
+  return toFillArray.flat();
+};
