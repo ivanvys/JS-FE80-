@@ -1,17 +1,16 @@
-const r = [1, 2, 3, 4, 5, 6];
-const y = (value) => {
-  const p = [];
-  const e = value.reduce((acc, element) => {
-    acc += element;
-    return acc;
-  }, 0);
-  p.push(e);
-  value.reduce((acc, element) => {
-    acc = acc - element;
-    p.push(acc);
-    return acc;
-  }, e);
-  return p;
-};
-
-console.log(y(r));
+// const createArray = [1, 6, 5, 5];
+// const q = (createArray) => {
+//   const intermediateМalue = createArray[createArray.length - 2];
+//   if (
+//     createArray[createArray.length - 1] > createArray[createArray.length - 2] ||
+//     createArray[createArray.length - 1] === createArray[createArray.length - 2]
+//   ) {
+//     return [
+//       createArray[0],
+//       createArray[1],
+//       (createArray[createArray.length - 2] =
+//         createArray[createArray.length - 1]),
+//       (createArray[createArray.length - 1] = intermediateМalue),
+//     ];
+//   }
+// };
