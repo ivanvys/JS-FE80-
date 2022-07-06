@@ -240,3 +240,73 @@ const Fn = (value) => {
   });
   return toFillArray.flat();
 };
+
+function minimumNumber(numbers) {
+  const sum = numbers.reduce((res, num) => res + num);
+
+  if (sum === 0) return sum + 2;
+  if (sum === 1) return sum + 1;
+
+  function isPrime(num) {
+    for (let i = 2; i < num; i++) {
+      if (num % i === 0) return false; // функция в функции
+    }
+    return true;
+  }
+
+  if (isPrime(sum) === true) return 0;
+
+  let j = 1;
+  while (j < 1000) {
+    if (isPrime(sum + j) === true) break;
+    j += 1;
+  }
+  return j;
+}
+
+const whoIsFaster = (value1, value2) => {
+  const firstPromise = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("You win!");
+    }, value1);
+  });
+  const secondPromise = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("You lost!");
+    }, value2);
+  });
+  Promise.race([firstPromise, secondPromise]).then((data) => console.log(data)); //таймауты (что быстрее) (c thenами)
+};
+
+// OR
+
+const whoIsFasterasync = async (value1, value2) => {
+  const firstPromise = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("You win!");
+    }, value1);
+  });
+  const secondPromise = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("You lost!");
+    }, value2);
+  });
+  console.log(await Promise.race([firstPromise, secondPromise])); //таймауты (что быстрее) (без then)
+};
+
+const fn = () =>
+  new Promise((resolve) => setTimeout(() => resolve("Good"), 1000)); // задачка с занятия
+
+const fn2 = (delay) =>
+  new Promise((_, reject) =>
+    setTimeout(() => reject(new Error("Wrong!")), delay)
+  );
+
+const fn3 = async (reqest, delay) => {
+  try {
+    const result = await Promise.race([reqest(), fn2(delay)]);
+    console.log(result);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
