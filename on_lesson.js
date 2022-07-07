@@ -17,7 +17,7 @@
 // const without7 = [-8, -4, 17, 1, 0];
 
 const deckSteve = ["K", 4, 7, 6, "J", "A", "A"];
-const deckJosh = ["A", 5, 8, 7, "J", "J", "4"];
+const deckJosh = ["J", 3, 6, 5, "J", "J", "4"];
 
 const fn = (value1, value2) => {
   const rang = Object.fromEntries(
@@ -47,6 +47,13 @@ const fn = (value1, value2) => {
       return acc;
     }, {})
   );
+  const howMuchToWinadd = howMuchToWin.reduce((acc, element) => {
+    if (element[0] != "Josh") {
+      acc.push(["Josh", 0]);
+    }
+    return acc;
+  }, []);
+  return howMuchToWinadd;
   const theMostWinner = howMuchToWin.sort((a, b) => b[1] - a[1]);
   for (let i = 0; i < theMostWinner.length; i++) {
     if (theMostWinner[i][0] != "Tie" && theMostWinner[i + 1][0] != "Tie") {
@@ -65,4 +72,4 @@ const fn = (value1, value2) => {
   }
 };
 
-// console.log(fn(deckSteve, deckJosh));
+console.log(fn(deckSteve, deckJosh));
