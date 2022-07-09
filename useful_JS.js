@@ -217,7 +217,7 @@ const theHiestArray = (value) => {
   });
 };
 
-const summ = (a) => (b) => console.log(a + b); //рекурсия
+const summ = (a) => (b) => console.log(a + b); //каррирование
 
 const numbers = [2, 3, 5, 3, 7, 9, 5, 3, 7];
 const Fn = (value) => {
