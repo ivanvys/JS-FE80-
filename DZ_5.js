@@ -40,6 +40,7 @@ const aggregateUsersToDosWithoutCycle = async () => {
     return acc;
   }, {});
   const newArrayOfDataUsers = dataUsers.map((user) => ({
+    /// ТРИ ТОЧКИ ПОТОМ! ЧТОБЫ ВЕРНУТЬ ВЕСЬ ЭЛЕМЕНТ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     ...user,
     todos: userIdTodosMap[user.id],
   }));

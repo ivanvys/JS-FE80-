@@ -310,3 +310,49 @@ const fn3 = async (reqest, delay) => {
     console.log(error.message);
   }
 };
+
+const PeriodDateRangeDictionary = {
+  yesterday: ["06/07/2022", "07/07/2022"],
+  lastWeek: ["27/06/2022", "03/07/2022"],
+  lastMonth: ["01/06/2022", "30/06/2022"],
+};
+
+const result1 = {
+  "06-07-2022_07-07-2022": "yesterday",
+  "27-06-2022_07-07-2022": "lastWeek",
+};
+
+const fn1 = (value) => {
+  const array = Object.entries(value);
+  return array.reduce((acc, [numberOfCalendar, data]) => {
+    const tire = `${data[0]}_${data[1]}`.replaceAll("/", "-"); ///метод с шаблонным строкам (задача по датам)
+    acc[tire] = numberOfCalendar;
+    return acc;
+  }, {});
+};
+
+const fnPoke = () => {
+  const BASE_URL = "https://pokeapi.co/api/v2/pokemon/";
+  fetch(BASE_URL)
+    .then((data) => data.json())
+    .then((data) => {
+      return data.results.map(({ url }) => {
+        return fetch(url).then((data) => data.json());
+      });
+    })
+    .then((data) => {
+      return Promise.all(data);
+    })
+    .then((data) => {
+      return data.map(({ stats, ...othersFiels }) => {
+        return {
+          ...othersFiels,
+          stats: stats.reduce((acc, element) => {
+            acc[element.stat.name] = element.base_stat;
+            return acc;
+          }, {}),
+        };
+      });
+    })
+    .then((data) => console.log(data)); //Покемоны на thenах!!!!
+};
