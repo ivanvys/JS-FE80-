@@ -4,10 +4,10 @@ const string:string = 'string'
 
 const undefined1:any = undefined 
 
-const numbersArray: Array<number>=[1,2,3]
+const numbersArray: Array<number>=[1,2,3]//generic type
 const numbersArray2:number[]=[1,2,3]
 
-interface IObj {//по такому типу должен быть сделан объект
+interface IObj {//по такому типу должен быть сделан объект(!только для {})
     name: string,
     age?: number,
     friends?: string[]
@@ -16,7 +16,7 @@ interface IObj {//по такому типу должен быть сделан 
 // OR
 
 type Obj={
-    name: string
+    name: string//кастомный тип!!!(можно и объект и просто примитив)
 }
 
 const obj: IObj = {
@@ -29,7 +29,7 @@ const users: IObj[]=[]//массив объектов вида интерфэй�
 
 users.push({name: 'Petr', age: 10})
 
-enum Roles {
+enum Roles {///перечисление
     ADMIN = "admin",
     CUSTOMER = 'customer'
 }
@@ -57,3 +57,22 @@ const sum = (a:number,b:number):number=>{
     return a+b
 }
 //void тип - для ничего не возвращающей функции
+
+
+const arrayOfNumbers:number[]=[1,1,2,2,2,3,3,3,4,4,5,5,5];
+
+const numbrs = (value:number[])=>{return value.reduce((acc:Record<string,number>, element:number) => {//Record
+    if (acc[element]) {
+      acc[element] += 1;
+    } else {
+      acc[element] = 1;
+    }
+    return acc;
+  }, {})}
+
+  interface Iuser {
+    name: string,
+    age: number,
+    nick?: string
+    getPass?:()=>string//типизация методов
+    }
